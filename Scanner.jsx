@@ -33,23 +33,7 @@ class Scanner extends Component {
   }
 
   onSuccess(e) {
-    if (e.data?.startsWith('http')) {
-      Alert.alert('URL found', `Open ${e.data} in browser?`, [
-        {
-          text: 'Yes',
-          onPress: () =>
-            Linking.openURL(e.data).catch((err) =>
-              console.error('An error occured', err)
-            ),
-        },
-        {
-          text: 'No',
-          onPress: () => console.log('No pressed'),
-          style: 'cancel',
-        },
-      ]);
-    }
-    if (this.props.onScan) this.props.onScan(e.data);
+    if (this.props.onScan && e?.data) this.props.onScan(e.data);
   }
 
   render() {
@@ -60,13 +44,7 @@ class Scanner extends Component {
         reactivate
         reactivateTimeout={this.props.reactivateTimeout || 5000}
         cameraType={this.state.currentCamera}
-        // topContent={
-        //   <Text style={styles.centerText}>
-        //     Go to{' '}
-        //     <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on
-        //     your computer and scan the QR code.
-        //   </Text>
-        // }
+        topContent={<Text style={styles.centerText}>Loading scanner...</Text>}
         bottomContent={
           <TouchableOpacity
             style={styles.buttonTouchable}
@@ -86,7 +64,7 @@ const styles = StyleSheet.create({
   centerText: {
     flex: 1,
     fontSize: 18,
-    padding: 32,
+    padding: 20,
     color: '#777',
   },
   textBold: {
@@ -98,10 +76,10 @@ const styles = StyleSheet.create({
     color: 'rgb(0,122,255)',
   },
   buttonTouchable: {
-    padding: 16,
-    backgroundColor: '#fff9',
+    padding: 10,
+    backgroundColor: '#fffc',
     borderRadius: 10,
-    marginBottom: 40,
+    marginBottom: 20,
   },
 });
 
