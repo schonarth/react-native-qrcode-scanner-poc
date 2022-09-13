@@ -15,8 +15,8 @@ class Scanner extends Component {
   constructor() {
     super();
     this.cameraIcons = {
-      front: '💻',
-      back: '🎮',
+      front: '🤳',
+      back: '📷',
     };
 
     this.state = {

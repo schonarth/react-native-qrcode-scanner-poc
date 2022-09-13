@@ -32,6 +32,7 @@ export default function App() {
 
   const handleScan = (data) => {
     setScanData(data);
+    toggleScanner();
     setQrCodeQuery(processQR(data));
   };
 
@@ -96,7 +97,7 @@ export default function App() {
           {qrCodeQuery && <Text>Query: {qrCodeQuery}</Text>}
         </View>
         <View style={styles.switch}>
-          <Text>Camera on</Text>
+          <Text>Camera {scannerOn ? 'ON' : 'OFF'}</Text>
           <Switch value={scannerOn} onValueChange={toggleScanner} />
         </View>
       </View>
